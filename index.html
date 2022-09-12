@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surveryer</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div id="home" v-if="page=='home'">
+                <h1>TITLE</h1>
+                <div class="information" v-if="filteredData.length > 0">
+                    <h1>{{filteredData[0].teacher}}</h1>
+                    <table>
+                        <thead>
+                            <td>ระดับชั้น</td>
+                            <td>ห้อง</td>
+                            <td>วิชา</td>
+                            <td>Q1</td>
+                            <td>Q2</td>
+                            <td>Q3</td>
+                            <td>Q4</td>
+                            <td>Q5</td>
+                            <td>Q6</td>
+                            <td>Q7</td>
+                            <td>ข้อเสนอแนะ</td>
+                        </thead>
+                        <tbody>
+                            <tr v-for="data in filteredData">
+                                <td>{{data.class}}</td>
+                                <td>{{data.room}}</td>
+                                <td>{{data.subject}}</td>
+                                <td>{{data.q1}}</td>
+                                <td>{{data.q2}}</td>
+                                <td>{{data.q3}}</td>
+                                <td>{{data.q4}}</td>
+                                <td>{{data.q5}}</td>
+                                <td>{{data.q6}}</td>
+                                <td>{{data.q7}}</td>
+                                <td>{{data.comments}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div id="login" v-else>
+                <div class="card">
+                    <h1>LOGIN PAGE</h1>
+                </div>
+                <div class="card">
+                    <input class="input" type="text" placeholder="Enter username">
+                    <input class="input" type="password" placeholder="********">
+                    <button class="input" type="submit" @click="login()">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/axios@0.27.2"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
