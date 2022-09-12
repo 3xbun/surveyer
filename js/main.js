@@ -13,7 +13,7 @@ createApp({
 
     const getData = () => {
       axios
-        .get("../survey.json")
+        .get("/surveyer/survey.json")
         .then((res) => {
           data.value = res.data;
         })
