@@ -13,6 +13,7 @@ body {
 .container {
     width: 85vw;
     margin: 3em auto;
+    max-width: 800px;
 }
 
 .card {
