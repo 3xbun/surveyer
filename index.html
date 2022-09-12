@@ -13,9 +13,8 @@
     <div id="app">
         <div class="container">
             <div id="home" v-if="page=='home'">
-                <h1>TITLE</h1>
+                <h1>ยินดีต้อนรับ คุณครู{{user.fname}} {{user.lname}}</h1>
                 <div class="information" v-if="filteredData.length > 0">
-                    <h1>{{filteredData[0].teacher}}</h1>
                     <table>
                         <thead>
                             <td>ระดับชั้น</td>
@@ -55,8 +54,8 @@
                     <h1>LOGIN PAGE</h1>
                 </div>
                 <div class="card">
-                    <input class="input" type="text" placeholder="Enter username">
-                    <input class="input" type="password" placeholder="********">
+                    <input v-model="username" class="input" type="text" placeholder="Enter username">
+                    <input v-model="password" class="input" type="password" placeholder="********">
                     <button class="input" type="submit" @click="login()">Login</button>
                 </div>
             </div>

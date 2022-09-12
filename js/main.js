@@ -2,18 +2,18 @@ const { createApp, ref, computed } = Vue;
 
 createApp({
   setup() {
-    // A "ref" is a reactive data source that stores a value.
-    // Technically, we don't need to wrap the string with ref()
-    // in order to display it, but we will see in the next
-    // example why it is needed if we ever intend to change
-    // the value.
     const data = ref([]);
     const name = ref("");
     const page = ref("login");
 
-    const getData = () => {
+    const username = ref("");
+    const password = ref("");
+    const BASE_URL = "";
+    const user = ref({});
+
+    const getData = async () => {
       axios
-        .get("/surveyer/survey.json")
+        .get(BASE_URL + "/data/survey.json")
         .then((res) => {
           data.value = res.data;
         })
@@ -22,16 +22,27 @@ createApp({
         });
     };
 
-    const login = () => {
-      page.value = "home";
-      name.value = "ครูบรรณสรณ์";
-      getData();
+    const login = async () => {
+      const userData = await axios.get(BASE_URL + "/data/Teachers.json");
+      console.log(username.value);
+      user.value = await userData.data.filter(
+        (e) => e.code === username.value
+      )[0];
+
+      console.log(password.value === user.value.password);
+
+      if (password.value === (await user.value.password)) {
+        page.value = "home";
+        getData();
+      } else {
+        alert("Wrong password");
+      }
     };
 
     const filteredData = computed(() => {
       const d = data.value;
       return d.filter((e) => {
-        return e.teacher.startsWith(name.value);
+        return e.teacher.startsWith(user.value.fname);
       });
     });
 
@@ -40,6 +51,9 @@ createApp({
       name,
       filteredData,
       page,
+      username,
+      user,
+      password,
       getData,
       login,
     };
