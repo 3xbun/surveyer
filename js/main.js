@@ -8,7 +8,7 @@ createApp({
 
     const username = ref("");
     const password = ref("");
-    const BASE_URL = "";
+    const BASE_URL = "/surveyer";
     const users = ref([]);
     const user = ref({});
 
