@@ -30,10 +30,10 @@
                             <td>ข้อเสนอแนะ</td>
                         </thead>
                         <tbody>
-                            <tr v-for="data in filteredData">
+                            <tr v-for="(data, id) in filteredData" :key="id">
                                 <td>{{data.class}}</td>
                                 <td>{{data.room}}</td>
-                                <td>{{data.subject}}</td>
+                                <td style="text-align: left">{{data.subject}}</td>
                                 <td>{{data.q1}}</td>
                                 <td>{{data.q2}}</td>
                                 <td>{{data.q3}}</td>
@@ -41,7 +41,7 @@
                                 <td>{{data.q5}}</td>
                                 <td>{{data.q6}}</td>
                                 <td>{{data.q7}}</td>
-                                <td>{{data.comments}}</td>
+                                <td style="width:15vw; text-align: left;">{{data.comment}}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -6,8 +6,8 @@ createApp({
     const name = ref("");
     const page = ref("login");
 
-    const username = ref("");
-    const password = ref("");
+    const username = ref("bunnasorn.k");
+    const password = ref("EC671R");
     const BASE_URL = "/surveyer";
     const user = ref({});
 
@@ -26,7 +26,7 @@ createApp({
       const userData = await axios.get(BASE_URL + "/data/Teachers.json");
       console.log(username.value);
       user.value = await userData.data.filter(
-        (e) => e.code === username.value
+        (e) => e.username === username.value
       )[0];
 
       console.log(password.value === user.value.password);
@@ -41,9 +41,13 @@ createApp({
 
     const filteredData = computed(() => {
       const d = data.value;
-      return d.filter((e) => {
-        return e.teacher.startsWith(user.value.fname);
-      });
+      return d
+        .filter((e) => {
+          const i = e.teachers.split(",");
+          const filter = i.includes(username.value);
+          return filter;
+        })
+        .sort((a, b) => b.class - a.class);
     });
 
     return {

@@ -39,4 +39,11 @@ body {
 
 table {
     width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+td {
+    padding: .5em;
+    border: solid 1px black;
 }
