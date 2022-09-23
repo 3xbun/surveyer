@@ -47,8 +47,15 @@ createApp({
           const filter = i.includes(username.value);
           return filter;
         })
-        .sort((a, b) => b.class - a.class);
+        .sort(
+          (a, b) =>
+            cmp(a.subject, b.subject) ||
+            cmp(a.class, b.class) ||
+            cmp(a.room, b.room)
+        );
     });
+
+    const cmp = (a, b) => (a > b) - (a < b);
 
     return {
       data,

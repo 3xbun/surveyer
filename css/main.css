@@ -41,9 +41,20 @@ table {
     width: 100%;
     text-align: center;
     border-collapse: collapse;
+    margin-top: 1em;
+}
+
+thead {
+    font-weight: bold;
+    background-color: black;
+    color: white;
 }
 
 td {
     padding: .5em;
-    border: solid 1px black;
+    vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+    background-color: lightgrey;
 }
