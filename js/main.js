@@ -54,7 +54,6 @@ createApp({
         (e) => e.username === username.value
       )[0];
 
-      console.log(user.value.password);
       if (password.value === (await user.value.password)) {
         if (username.value === "materdei") {
           page.value = "admin";
