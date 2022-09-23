@@ -6,10 +6,18 @@ createApp({
     const name = ref("");
     const page = ref("login");
 
-    const username = ref("bunnasorn.k");
-    const password = ref("EC671R");
-    const BASE_URL = "/surveyer";
+    const username = ref("");
+    const password = ref("");
+    const BASE_URL = "";
+    const users = ref([]);
     const user = ref({});
+
+    const reset = () => {
+      username.value = "";
+      name.value = "";
+      user.value = {};
+      data.value = [];
+    };
 
     const getData = async () => {
       axios
@@ -22,26 +30,46 @@ createApp({
         });
     };
 
+    const search = async () => {
+      const u = await axios.get(BASE_URL + "/data/Teachers.json");
+      users.value = await u.data;
+    };
+
+    const filteredUser = computed(() => {
+      const u = users.value;
+      return u.filter((e) => {
+        return e.username.startsWith(username.value);
+      });
+    });
+
+    const showUser = (u) => {
+      username.value = u.username;
+      user.value = u;
+      getData();
+    };
+
     const login = async () => {
       const userData = await axios.get(BASE_URL + "/data/Teachers.json");
-      console.log(username.value);
       user.value = await userData.data.filter(
         (e) => e.username === username.value
       )[0];
 
-      console.log(password.value === user.value.password);
-
+      console.log(user.value.password);
       if (password.value === (await user.value.password)) {
-        page.value = "home";
-        getData();
+        if (username.value === "materdei") {
+          page.value = "admin";
+          reset();
+        } else {
+          page.value = "home";
+          getData();
+        }
       } else {
         alert("Wrong password");
       }
     };
 
     const filteredData = computed(() => {
-      const d = data.value;
-      return d
+      return data.value
         .filter((e) => {
           const i = e.teachers.split(",");
           const filter = i.includes(username.value);
@@ -60,13 +88,18 @@ createApp({
     return {
       data,
       name,
+      filteredUser,
       filteredData,
       page,
       username,
       user,
+      users,
       password,
       getData,
       login,
+      search,
+      showUser,
+      reset,
     };
   },
 }).mount("#app");

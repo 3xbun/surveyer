@@ -1,5 +1,9 @@
 [
   {
+    "username": "materdei",
+    "password": "serviam"
+  },
+  {
     "username": "25210502",
     "fname": "ธาริณี",
     "lname": "จึงเจนชัยนันท์",
@@ -828,6 +832,7 @@
     "password": "WA450U"
   },
   {
+    "username": "nyle.p",
     "fname": "Nyle",
     "lname": "Spoelstra",
     "password": "CS439T"

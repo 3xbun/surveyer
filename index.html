@@ -48,8 +48,61 @@
                 </div>
             </div>
 
+            <div id="admin" v-if="page=='admin'">
+                <div class="searchbar" v-if="!user.username">
+                    <input v-model="username" type="text">
+                    <ion-icon @click="search()" name="search-outline"></ion-icon>
+                </div>
 
-            <div id="login" v-else>
+                <ul v-if="!user.username">
+                    <li v-for="user in filteredUser">
+                        <p class="username">{{user.username}}</p>
+                        <p class="fullName" style="font-weight:bold">{{user.fname}} {{user.lname}}</p>
+                        <ion-icon name="eye-outline" @click="showUser(user)"></ion-icon>
+                    </li>
+                </ul>
+                <div class="result" v-if="user.username">
+                    <h1>คุณครู{{user.fname}} {{user.lname}}
+                        <ion-icon name="close-circle-outline" @click="reset()"></ion-icon>
+                    </h1>
+
+                    <div class="information" v-if="filteredData.length > 0">
+                        <table>
+                            <thead>
+                                <td>ระดับชั้น</td>
+                                <td>ห้อง</td>
+                                <td>วิชา</td>
+                                <td>Q1</td>
+                                <td>Q2</td>
+                                <td>Q3</td>
+                                <td>Q4</td>
+                                <td>Q5</td>
+                                <td>Q6</td>
+                                <td>Q7</td>
+                                <td>ข้อเสนอแนะ</td>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(data, id) in filteredData" :key="id">
+                                    <td>{{data.class}}</td>
+                                    <td>{{data.room}}</td>
+                                    <td style="text-align: left">{{data.subject}}</td>
+                                    <td>{{data.q1}}</td>
+                                    <td>{{data.q2}}</td>
+                                    <td>{{data.q3}}</td>
+                                    <td>{{data.q4}}</td>
+                                    <td>{{data.q5}}</td>
+                                    <td>{{data.q6}}</td>
+                                    <td>{{data.q7}}</td>
+                                    <td style="width:15vw; text-align: left;">{{data.comment}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="login" v-if="page=='login'">
                 <div class="card">
                     <h1>LOGIN PAGE</h1>
                 </div>
@@ -61,6 +114,9 @@
             </div>
         </div>
     </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://unpkg.com/axios@0.27.2"></script>
     <script src="./js/main.js"></script>
