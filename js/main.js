@@ -38,7 +38,9 @@ createApp({
     const filteredUser = computed(() => {
       const u = users.value;
       return u.filter((e) => {
-        return e.username.startsWith(username.value);
+        return (
+          e.username.startsWith(username.value) && e.username != "materdei"
+        );
       });
     });
 
@@ -55,6 +57,7 @@ createApp({
       )[0];
 
       if (password.value === (await user.value.password)) {
+        document.body.style.backgroundColor = "white";
         if (username.value === "materdei") {
           page.value = "admin";
           reset();
