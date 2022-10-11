@@ -61,10 +61,14 @@
                         <ion-icon name="eye-outline" @click="showUser(user)"></ion-icon>
                     </li>
                 </ul>
+
                 <div class="result" v-if="user.username">
-                    <h1>คุณครู{{user.fname}} {{user.lname}}
-                        <ion-icon name="close-circle-outline" @click="reset()"></ion-icon>
-                    </h1>
+                    <div class="header">
+                        <h1>คุณครู{{user.fname}} {{user.lname}}</h1>
+                        <h1>
+                            <ion-icon name="close-circle-outline" @click="reset()"></ion-icon>
+                        </h1>
+                    </div>
 
                     <div class="information" v-if="filteredData.length > 0">
                         <table>
@@ -103,12 +107,11 @@
             </div>
 
             <div id="login" v-if="page=='login'">
-                <div class="card">
+                <div class="container">
                     <h1>LOGIN PAGE</h1>
-                </div>
-                <div class="card">
                     <input v-model="username" class="input" type="text" placeholder="Enter username">
-                    <input v-model="password" class="input" type="password" placeholder="********">
+                    <input v-model="password" class="input" type="password" @keyup.enter="login()"
+                        placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                     <button class="input" type="submit" @click="login()">Login</button>
                 </div>
             </div>
