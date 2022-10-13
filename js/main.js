@@ -8,7 +8,7 @@ createApp({
 
     const username = ref("");
     const password = ref("");
-    const BASE_URL = "/surveyer";
+    const BASE_URL = "";
     const users = ref([]);
     const user = ref({});
 
@@ -39,7 +39,8 @@ createApp({
       const u = users.value;
       return u.filter((e) => {
         return (
-          e.username.startsWith(username.value) && e.username != "materdei"
+          e.username.startsWith(username.value.toLowerCase()) &&
+          e.username != "materdei"
         );
       });
     });
