@@ -111,9 +111,11 @@ ion-icon {
 
 .searchbar input {
     width: 100%;
-    padding: .5em 1em;
+    padding: 0 1em;
     border-radius: 1em;
     border: 1px solid black;
+    font-family: inherit;
+    font-size: .5em;
 }
 
 .header {
