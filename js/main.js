@@ -58,13 +58,14 @@ createApp({
       )[0];
 
       if (password.value === (await user.value.password)) {
-        document.body.style.backgroundColor = "white";
+        document.body.style.backgroundColor = "#ebebeb";
         if (username.value === "materdei") {
           page.value = "admin";
           reset();
         } else {
           page.value = "home";
-          getData();
+
+          await getData();
         }
       } else {
         alert("Wrong password");
@@ -74,8 +75,7 @@ createApp({
     const filteredData = computed(() => {
       return data.value
         .filter((e) => {
-          const i = e.teachers.split(",");
-          const filter = i.includes(username.value);
+          const filter = e.teachers.includes(username.value);
           return filter;
         })
         .sort(
