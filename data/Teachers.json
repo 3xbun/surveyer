@@ -882,7 +882,7 @@
   {
     "username": "christopher.d",
     "fname": "Christopher",
-    "lname": "Scott  Dixon",
+    "lname": "Scott Dixon",
     "password": "KZ499E"
   },
   {
@@ -1283,6 +1283,13 @@
     "lname": "Leiber",
     "password": "HA261B"
   },
+  {
+    "username": "harry.v",
+    "fname": "Harry",
+    "lname": "Vanduyne",
+    "password": "HA728V"
+  },
+
   {
     "username": "supasit.k",
     "fname": "ศุภสิทธิ์",
