@@ -13,8 +13,55 @@
     <div id="app">
         <div class="container">
             <div id="home" v-if="page=='home'">
-                <h1>ยินดีต้อนรับ คุณครู{{user.fname}} {{user.lname}}</h1>
-                <div class="information" v-if="filteredData.length > 0">
+                <h1 class="box">ยินดีต้อนรับ คุณครู{{user.fname}} {{user.lname}}</h1>
+                <div class="summary box">
+                    <div class="questions">
+                        <div id="q1">
+                            <p>Q1 AVG.</p>
+                            <div class="circle">
+                                <p>{{summary.q1}}</p>
+                            </div>
+                        </div>
+                        <div id="q2">
+                            <p>Q2 AVG.</p>
+                            <div class="circle">
+                                <p>{{summary.q2}}</p>
+                            </div>
+                        </div>
+                        <div id="q3">
+                            <p>Q3 AVG.</p>
+                            <div class="circle">
+                                <p>{{summary.q3}}</p>
+                            </div>
+                        </div>
+                        <div id="q4">
+                            <p>Q4 AVG.</p>
+                            <div class="circle">
+                                <p>{{summary.q4}}</p>
+                            </div>
+                        </div>
+                        <div id="q5">
+                            <p>Q5 AVG.</p>
+                            <div class="circle">
+                                <p>{{summary.q5}}</p>
+                            </div>
+                        </div>
+                        <div id="q6">
+                            <p>Q6 AVG.</p>
+                            <div class="circle">
+                                <p>{{summary.q6}}</p>
+                            </div>
+                        </div>
+                        <div id="q7">
+                            <p>Q7 AVG.</p>
+                            <div class="circle">
+                                <p>{{summary.q7}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="information box" v-if="data.length > 0">
                     <table>
                         <thead>
                             <td>ระดับชั้น</td>
@@ -30,7 +77,7 @@
                             <td>ข้อเสนอแนะ</td>
                         </thead>
                         <tbody>
-                            <tr v-for="(data, id) in filteredData" :key="id">
+                            <tr v-for="(data, id) in data" :key="id">
                                 <td>{{data.class}}</td>
                                 <td>{{data.room}}</td>
                                 <td style="text-align: left">{{data.subject}}</td>
