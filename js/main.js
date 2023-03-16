@@ -19,11 +19,68 @@ createApp({
       data.value = [];
     };
 
+    const summary = computed(() => {
+      sumQ1 =
+        data.value.reduce((acc, e) => {
+          return parseInt(acc) + parseInt(e.q1);
+        }, 0) / data.value.length;
+
+      sumQ2 =
+        data.value.reduce((acc, e) => {
+          return parseInt(acc) + parseInt(e.q2);
+        }, 0) / data.value.length;
+
+      sumQ3 =
+        data.value.reduce((acc, e) => {
+          return parseInt(acc) + parseInt(e.q3);
+        }, 0) / data.value.length;
+
+      sumQ4 =
+        data.value.reduce((acc, e) => {
+          return parseInt(acc) + parseInt(e.q4);
+        }, 0) / data.value.length;
+
+      sumQ5 =
+        data.value.reduce((acc, e) => {
+          return parseInt(acc) + parseInt(e.q5);
+        }, 0) / data.value.length;
+
+      sumQ6 =
+        data.value.reduce((acc, e) => {
+          return parseInt(acc) + parseInt(e.q6);
+        }, 0) / data.value.length;
+
+      sumQ7 =
+        data.value.reduce((acc, e) => {
+          return parseInt(acc) + parseInt(e.q7);
+        }, 0) / data.value.length;
+
+      return {
+        q1: parseFloat(sumQ1).toFixed(1),
+        q2: parseFloat(sumQ2).toFixed(1),
+        q3: parseFloat(sumQ3).toFixed(1),
+        q4: parseFloat(sumQ4).toFixed(1),
+        q5: parseFloat(sumQ5).toFixed(1),
+        q6: parseFloat(sumQ6).toFixed(1),
+        q7: parseFloat(sumQ7).toFixed(1),
+      };
+    });
+
     const getData = async () => {
       axios
         .get(BASE_URL + "/data/survey.json")
         .then((res) => {
-          data.value = res.data;
+          data.value = res.data
+            .filter((e) => {
+              const filter = e.teacherID.includes(username.value);
+              return filter;
+            })
+            .sort(
+              (a, b) =>
+                cmp(a.subject, b.subject) ||
+                cmp(a.class, b.class) ||
+                cmp(a.room, b.room)
+            );
         })
         .catch((err) => {
           console.error(err);
@@ -63,28 +120,13 @@ createApp({
           page.value = "admin";
           reset();
         } else {
-          page.value = "home";
-
           await getData();
+          page.value = await "home";
         }
       } else {
         alert("Wrong password");
       }
     };
-
-    const filteredData = computed(() => {
-      return data.value
-        .filter((e) => {
-          const filter = e.teachers.includes(username.value);
-          return filter;
-        })
-        .sort(
-          (a, b) =>
-            cmp(a.subject, b.subject) ||
-            cmp(a.class, b.class) ||
-            cmp(a.room, b.room)
-        );
-    });
 
     const cmp = (a, b) => (a > b) - (a < b);
 
@@ -92,12 +134,12 @@ createApp({
       data,
       name,
       filteredUser,
-      filteredData,
       page,
       username,
       user,
       users,
       password,
+      summary,
       getData,
       login,
       search,
